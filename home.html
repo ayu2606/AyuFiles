@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>AyuFiles - Home</title>
+    <style>
+        /* Common styles for light and dark theme */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+            color: #333;
+        }
+
+        .container {
+            width: auto;
+            margin: 0 auto;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            background-color: #f9f9f9;
+            color: #333;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 0px;
+        }
+
+        .upload-form {
+            border: none;
+            padding: 10px;
+            text-align: center;
+            background-color: #f9f9f9;
+            border-radius: 8px;
+        }
+        .container.dark-theme {
+            background-color: #222;
+            color: #fff;
+        }
+        .upload-form.dark-theme {
+            background-color: #222;
+            color: #222;
+            color: #fff;
+        }
+        .upload-form.dark-theme input[type="file"] {
+            margin: 10px 0;
+            color: #fff; /* Add this line to make the text visible */
+            
+        }
+        .upload-form input[type="file"] {
+            margin: 10px 0;
+            color: #222; /* Add this line to make the text visible */
+            
+        }
+
+        .upload-form button {
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+        }
+
+        .upload-form.dark-theme button {
+            background-color: #444;
+        }
+        .url-container {
+            margin-top: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+        }
+
+        .url-container input[type="text"] {
+            width: 100%;
+            padding: 5px;
+            margin-top: 5px;
+            text-align: center;
+            border: none;
+            background-color: transparent;
+            color: #333;
+            font-size: 14px;
+        }
+
+        .url-container button {
+            padding: 5px 10px;
+            background-color: #4CAF50;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            font-weight: bold;
+            margin-top: 5px;
+        }
+
+        .url-container.dark-theme input[type="text"],
+        .url-container.dark-theme button {
+            background-color: #444;
+            color: #fff;
+        }
+        .toggle-button {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background-color: #4CAF50;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            padding: 10px 20px;
+            font-weight: bold;
+        }
+
+        .toggle-button.dark-theme {
+            background-color: #222;
+        }
+
+        /* Rest of the styles... */
+    </style>
+    <script>
+        function toggleTheme() {
+            var container = document.querySelector('.container');
+            container.classList.toggle('dark-theme');
+
+            var uploadForm = document.querySelector('.upload-form');
+            uploadForm.classList.toggle('dark-theme');
+
+            var urlContainer = document.querySelector('.url-container');
+            urlContainer.classList.toggle('dark-theme');
+
+            var toggleButton = document.querySelector('.toggle-button');
+            if (container.classList.contains('dark-theme')) {
+                toggleButton.textContent = 'Toggle Light Mode';
+            } else {
+                toggleButton.textContent = 'Toggle Dark Mode';
+            }
+        }
+        function copyUrl() {
+            var urlInput = document.querySelector('.url-container input[type="text"]');
+            urlInput.select();
+            document.execCommand('copy');
+        }
+    </script>
+</head>
+<body>
+    <div class="container light-theme">
+        <div class="header">
+            <h1>AyuFiles - Home</h1>
+        </div>
+
+        <div class="upload-form">
+            <h3>Upload a File</h3>
+            <form action="/upload" method="POST" enctype="multipart/form-data">
+                <input type="file" name="file" accept=".txt,.pdf,.doc,.docx,.jpg,.jpeg,.png">
+                <br>
+                <button type="submit">
+                    Upload
+                </button>
+            </form>
+        </div>
+        <div class="url-container">
+            <input type="text" value="http://www.example.com/file" readonly>
+            <button onclick="copyUrl()">Copy URL</button>
+        </div>
+    </div>    
+    </div>
+
+    <button class="toggle-button" onclick="toggleTheme()">
+        Toggle Dark Mode
+    </button>
+</body>
+</html>
